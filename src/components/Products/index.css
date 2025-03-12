@@ -1,0 +1,15 @@
+/* Write your CSS code here */
+.products-div {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+}
+.products-img-div {
+  flex-grow: 1; /* Expands to fill available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.products-img {
+  width: 10%;
+}
