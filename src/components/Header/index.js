@@ -1,21 +1,12 @@
 import './index.css'
 
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 
 const Header = props => {
-  let {history} = props
-  let goToProductRoute = () => {
-    history.push('/products')
-  }
-  let goToCartRouter = () => {
-    history.push('/cart')
-  }
-  let navigateToLoginRoute = () => {
-    //delete jwt token in cookies
-    console.log('Before removing:', Cookies.get('jwt_token'))
+  const {history} = props
+  const navigateToLoginRoute = () => {
     Cookies.remove('jwt_token')
-    console.log('After removing:', Cookies.get('jwt_token'))
     history.replace('/login')
   }
   return (
@@ -28,7 +19,11 @@ const Header = props => {
             alt="website logo"
           />
 
-          <button type="button" className="nav-mobile-btn">
+          <button
+            type="button"
+            className="nav-mobile-btn"
+            onClick={navigateToLoginRoute}
+          >
             <img
               src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-log-out-img.png"
               alt="nav logout"
@@ -44,15 +39,17 @@ const Header = props => {
             alt="website logo"
           />
           <ul className="nav-menu">
-            <li className="nav-menu-item">Home</li>
+            <Link to="/" className="nav-link">
+              <li className="nav-menu-item">Home</li>
+            </Link>
 
-            <li className="nav-menu-item" onClick={goToProductRoute}>
-              Products
-            </li>
+            <Link to="/products" className="nav-link">
+              <li className="nav-menu-item">Products</li>
+            </Link>
 
-            <li className="nav-menu-item" onClick={goToCartRouter}>
-              Cart
-            </li>
+            <Link to="/cart" className="nav-link">
+              <li className="nav-menu-item">Cart</li>
+            </Link>
           </ul>
           <button
             type="button"

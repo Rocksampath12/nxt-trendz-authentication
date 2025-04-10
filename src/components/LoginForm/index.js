@@ -32,7 +32,12 @@ class LoginForm extends Component {
 
   submitForm = async event => {
     event.preventDefault()
-    const {username, password} = this.state
+
+    // Replacing my credentials **with** Rahul's credentials
+    let {username, password} = this.state
+    if (username === 'sampath') username = 'rahul'
+    if (password === 'sampath@2021') password = 'rahul@2021'
+
     const userDetails = {username, password}
     const url = 'https://apis.ccbp.in/login'
     const options = {
@@ -63,7 +68,7 @@ class LoginForm extends Component {
           className="password-input-field"
           value={password}
           onChange={this.onChangePassword}
-          placeholder="Password"
+          placeholder="sampath@2021"
         />
       </>
     )
@@ -83,7 +88,7 @@ class LoginForm extends Component {
           className="username-input-field"
           value={username}
           onChange={this.onChangeUsername}
-          placeholder="Username"
+          placeholder="sampath"
         />
       </>
     )
